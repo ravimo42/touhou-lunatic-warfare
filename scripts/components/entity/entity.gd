@@ -1,10 +1,10 @@
 @abstract class_name Entity extends CharacterBody2D
 
-class GlobalSignal:
+class StaticSignal:
 	@warning_ignore("unused_signal")
 	signal someone_got_hit
 
-static var global_signal := GlobalSignal.new()
+static var static_signals := StaticSignal.new()
 
 signal died
 signal damaged(ammount: float)
@@ -20,7 +20,7 @@ var knockback_factor := 100.0
 ## Common damage behaviour
 func damage(source: Node2D, ammount: float, args: Dictionary) -> void:
 	damaged.emit(ammount)
-	global_signal.someone_got_hit.emit.call_deferred()
+	static_signals.someone_got_hit.emit.call_deferred()
 	AutoTween.new(self, &"modulate", Color.WHITE, 0.25).from(Color.RED)
 	AutoTween.new(self, &"scale", Vector2.ONE, 0.25).from(Vector2(1.05, 1.05))
 	if args.has("normal"): velocity.x = - sign(args["normal"].x) * knockback_factor

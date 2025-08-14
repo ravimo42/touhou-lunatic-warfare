@@ -11,6 +11,9 @@ config_version=5
 [application]
 
 config/name="Touhou: Lunatic Warfare"
+config/name_localized={
+"ja_JP": "東方「Lunatic Warfare」"
+}
 config/description="A Touhou fangame where Reisen Inaba tries to stop Clownpiece for doing some silly stuff."
 config/version="0.0.1-jam"
 run/main_scene="uid://dvnx03d746kdn"

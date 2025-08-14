@@ -14,7 +14,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	_hitmarker.modulate.a = 0.0
-	Entity.global_signal.someone_got_hit.connect(func():
+	Entity.static_signals.someone_got_hit.connect(func():
 		_hitmarker.show()
 		_hitmarker.modulate.a = 1.0
 		AutoTween.new(_hitmarker, &"scale", Vector2.ONE, 0.3).from(Vector2(1.2, 1.2))
