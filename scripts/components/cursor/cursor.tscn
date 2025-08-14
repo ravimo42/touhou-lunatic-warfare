@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdm6wlm530nsh"]
+
+[ext_resource type="Script" uid="uid://62jofshcchrg" path="res://scripts/components/cursor/cursor.gd" id="1_dj14k"]
+
+[sub_resource type="Curve" id="Curve_dj14k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.97745675), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_dj14k")
+
+[node name="Cross" type="Node2D" parent="."]
+
+[node name="Line2D2" type="Line2D" parent="Cross"]
+texture_filter = 2
+rotation = 1.5707964
+points = PackedVector2Array(8, 0, 38, 0)
+width = 4.0
+width_curve = SubResource("Curve_dj14k")
+antialiased = true
+
+[node name="Line2D3" type="Line2D" parent="Cross"]
+texture_filter = 2
+points = PackedVector2Array(8, 0, 38, 0)
+width = 4.0
+width_curve = SubResource("Curve_dj14k")
+antialiased = true
+
+[node name="Line2D4" type="Line2D" parent="Cross"]
+texture_filter = 2
+rotation = -1.5707964
+points = PackedVector2Array(8, 0, 38, 0)
+width = 4.0
+width_curve = SubResource("Curve_dj14k")
+antialiased = true
+
+[node name="Line2D5" type="Line2D" parent="Cross"]
+texture_filter = 2
+rotation = -3.1415927
+points = PackedVector2Array(8, 0, 38, 0)
+width = 4.0
+width_curve = SubResource("Curve_dj14k")
+antialiased = true
+
+[node name="HitMarker" type="Node2D" parent="."]
+unique_name_in_owner = true
+rotation = 0.7853982
+
+[node name="Node2D" type="Node2D" parent="HitMarker"]
+
+[node name="Line2D" type="Line2D" parent="HitMarker/Node2D"]
+points = PackedVector2Array(24, 0, 42, 0)
+width = 2.0
+
+[node name="Line2D2" type="Line2D" parent="HitMarker/Node2D"]
+rotation = 1.5707964
+points = PackedVector2Array(24, 0, 42, 0)
+width = 2.0
+
+[node name="Line2D3" type="Line2D" parent="HitMarker/Node2D"]
+rotation = -3.1415925
+points = PackedVector2Array(24, 0, 42, 0)
+width = 2.0
+
+[node name="Line2D4" type="Line2D" parent="HitMarker/Node2D"]
+rotation = -1.5707964
+points = PackedVector2Array(24, 0, 42, 0)
+width = 2.0

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdt5hfmpe0553"]
+
+[ext_resource type="Script" uid="uid://bihxu8607pat8" path="res://scripts/libs/hitscan/hitscan.gd" id="1_c18d7"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_sy6p1"]
+b = Vector2(640, 0)
+
+[node name="Hitscan" type="CollisionShape2D"]
+shape = SubResource("SegmentShape2D_sy6p1")
+script = ExtResource("1_c18d7")
+collision_mask = Array[int]([1, 9])
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(640, 0, 0, 0)
+width = 2.0
+default_color = Color(1, 0.8980392, 0.7490196, 1)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(640, 0)
+collide_with_areas = true
