@@ -10,6 +10,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	_connect_signal()
+	%PName.text = App.data.name
+	%PVersion.text = App.data.version
 
 func _connect_signal() -> void:
 	Stats.stats_changed.connect(func(which: StringName, what: StringName, value: Variant):

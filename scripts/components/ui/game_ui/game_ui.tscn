@@ -19,44 +19,59 @@ script = ExtResource("2_a8s2a")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="L" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
 
-[node name="Dash" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="Dash" type="HBoxContainer" parent="HBoxContainer/L"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/Dash"]
+[node name="Label2" type="Label" parent="HBoxContainer/L/Dash"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Dash"
 
-[node name="DashStats" type="ProgressBar" parent="HBoxContainer/VBoxContainer/Dash"]
+[node name="DashStats" type="ProgressBar" parent="HBoxContainer/L/Dash"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 show_percentage = false
 
-[node name="Control" type="Control" parent="HBoxContainer/VBoxContainer/Dash"]
+[node name="Control" type="Control" parent="HBoxContainer/L/Dash"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Hover" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="Hover" type="HBoxContainer" parent="HBoxContainer/L"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Hover"]
+[node name="Label" type="Label" parent="HBoxContainer/L/Hover"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Hover"
 
-[node name="HoverStats" type="ProgressBar" parent="HBoxContainer/VBoxContainer/Hover"]
+[node name="HoverStats" type="ProgressBar" parent="HBoxContainer/L/Hover"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="HBoxContainer"]
+[node name="R" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 2
+
+[node name="PName" type="Label" parent="HBoxContainer/R"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PVersion" type="Label" parent="HBoxContainer/R"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+vertical_alignment = 1

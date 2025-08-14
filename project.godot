@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="touhou-lunatic-warfare"
+config/name="Touhou: Lunatic Warfare"
+config/description="A Touhou fangame where Reisen Inaba tries to stop Clownpiece for doing some silly stuff."
+config/version="0.0.1-jam"
 run/main_scene="uid://dvnx03d746kdn"
 config/features=PackedStringArray("420.69", "GL Compatibility")
 config/icon="res://icon.svg"
