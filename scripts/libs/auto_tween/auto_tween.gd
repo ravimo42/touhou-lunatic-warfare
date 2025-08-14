@@ -28,7 +28,7 @@ static func kill(node: Node, property: Variant) -> void:
 
 ## Kill all active tween inside the 'node'
 static func kill_all(node: Node) -> void:
-	for g in node.get_groups():
+	for g in node.get_meta_list():
 		if !g.contains(META):
 			continue
 		var unfreed_at: AutoTween = node.get_meta(g)

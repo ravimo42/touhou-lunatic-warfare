@@ -10,7 +10,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	_connect_signal()
-	%PName.text = App.data.name
+	%PName.text = App.data.name_localized["ja_JP"]
 	%PVersion.text = App.data.version
 
 func _connect_signal() -> void:

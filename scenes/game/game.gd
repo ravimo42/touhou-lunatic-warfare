@@ -17,8 +17,6 @@ static var scaling: Vector2:
 static var relative_scaling: Vector2 :
 	get: return scaling / default_scaling
 static var is_new_game := false
-static var is_web_build: bool:
-	get: return OS.get_name().to_lower().contains("web")
 
 static var ui_node: CanvasLayer:
 	get: return instance.get_node("%UI")

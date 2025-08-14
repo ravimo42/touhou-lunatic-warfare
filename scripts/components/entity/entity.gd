@@ -42,6 +42,6 @@ func despawn() -> void:
 
 ## Common spawn behavious
 func spawn() -> void:
-	spawned.emit.call_deferred()
+	spawned.emit()
 	set_physics_process(true)
 	propagate_call(&"set_physics_process", [true])
