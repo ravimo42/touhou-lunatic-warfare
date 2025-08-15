@@ -42,7 +42,7 @@ func _input(event: InputEvent) -> void:
 		return
 	if _jump_node.is_coyoting:
 		return
-	if _ground_clearance.has_overlapping_bodies() and _player.velocity.y >= 0.0:
+	if _ground_clearance.has_overlapping_bodies() and _player.velocity.y >= 0.0 and !active:
 		return
 	if event.is_action_pressed(&"Jump"):
 		_toggle_active(!active)
@@ -62,8 +62,11 @@ func _toggle_active(b: bool) -> void:
 	if b:
 		Camera.external_offset.y = -Camera.VERTICAL_OFFSET
 		set_physics_process(true)
+		var t := Trail.new(Arena.other_nodes, self)
+		t.z_index = -1
 	else:
 		Camera.external_offset.y = 0.0
+		Trail.remove(self)
 
 func _move_on_air(delta: float) -> void:
 	var delta_pos_player := Game.get_cursor_position().x - Player.instance.global_position.x

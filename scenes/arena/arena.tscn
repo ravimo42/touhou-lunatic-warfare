@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctpnitbyiug4h"]
+[gd_scene load_steps=8 format=3 uid="uid://ctpnitbyiug4h"]
 
 [ext_resource type="PackedScene" uid="uid://bnq3t3c1imot1" path="res://scripts/components/entity/player/player.tscn" id="1_1qjuf"]
 [ext_resource type="PackedScene" uid="uid://cde6s3i4jov3g" path="res://scripts/components/camera/camera.tscn" id="1_8trdl"]
 [ext_resource type="Script" uid="uid://b1c0pkx4cqbrp" path="res://scenes/arena/arena.gd" id="1_aj7ud"]
+[ext_resource type="Script" uid="uid://wdm04fxg482c" path="res://scenes/arena/scripts/debug/enemy_spawner.gd" id="2_jx0ua"]
 [ext_resource type="Texture2D" uid="uid://de60in8oi1p1f" path="res://icon.svg" id="3_5tue2"]
 [ext_resource type="PackedScene" uid="uid://gfdqvqd8287m" path="res://scripts/components/entity/enemy/enemy.tscn" id="5_asdgj"]
 
@@ -11,6 +12,13 @@ size = Vector2(2432, 64)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_aj7ud")
+
+[node name="Scripts" type="Node" parent="."]
+
+[node name="Debug" type="Node" parent="Scripts"]
+
+[node name="EnemySpawner" type="Node" parent="Scripts/Debug"]
+script = ExtResource("2_jx0ua")
 
 [node name="Camera" parent="." instance=ExtResource("1_8trdl")]
 

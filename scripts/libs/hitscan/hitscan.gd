@@ -1,4 +1,4 @@
-extends Projectile
+class_name HitScan extends Projectile
 
 const MAX_LENGTH := 640.0
 const LENGTH_OFFSET := 6.0
@@ -37,7 +37,7 @@ func _trail_anim() -> void:
 
 func _raycast_check() -> void:
 	var res := _raycast.is_colliding()
-	if !res or (_raycast.get_collider() is HitboxComponent and !_raycast.get_collider().active):
+	if !res or (_raycast.get_collider() is HitboxComponent and !_raycast.get_collider().active) or can_pass_through:
 		_set_length(MAX_LENGTH)
 		return
 	_set_length(_raycast.get_collision_point().distance_to(global_position))

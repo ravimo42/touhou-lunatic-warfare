@@ -11,7 +11,9 @@ extends Node2D
 
 var _dash_value: float:
 	set(val):
-		var res := clampf(val, 0.0, Stats.get_stats(&"dash", &"max_value"))
+		var res := clampf(val, 0.0, _dash_max_value)
+		if res == _dash_max_value and val <= _dash_max_value:
+			Stats.send_notification(&"dash_full")
 		Stats.set_stats(&"dash", &"value", res)
 	get: return Stats.get_stats(&"dash", &"value")
 

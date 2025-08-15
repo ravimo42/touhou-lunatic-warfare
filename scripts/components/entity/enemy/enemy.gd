@@ -23,4 +23,4 @@ func _physics_process(delta: float) -> void:
 func _jump() -> void:
 	velocity.y = -POWER
 	velocity.x = dir_to_player * POWER / 2.0
-	get_tree().create_timer(1.0).timeout.connect(_jump)
+	get_tree().create_timer(randf_range(0.5, 2.0)).timeout.connect(_jump)
