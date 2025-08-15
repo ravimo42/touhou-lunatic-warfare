@@ -9,7 +9,7 @@ class_name AutoTween extends RefCounted
 
 signal finished
 
-const META := &"tween_array"
+const META := &"auto_tween"
 
 var tween: Tween
 var tweener: Tweener

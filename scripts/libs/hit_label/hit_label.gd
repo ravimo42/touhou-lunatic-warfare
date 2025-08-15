@@ -3,27 +3,27 @@ class_name HitLabel extends Control
 const META := &"hitlabel"
 
 static func create(damage_ammount: float, node: Node2D, pos_offset := Vector2(0.0, -108.0)) -> HitLabel:
-	var hl := check_hitlabel(node)
-	if hl == null:
-		hl = load("uid://bp6k0giylx3f3").instantiate()
-		Arena.other_nodes.add_child(hl.post_marker)
-		Game.ui_node.add_child(hl)
-		hl.parent = node
-		hl.global_position = Game.get_relative_position(node) + pos_offset
-	hl.offset = pos_offset
-	hl.parent.set_meta(META, hl)
-	hl.damage = damage_ammount
-	hl.accumulated_damage += damage_ammount
-	hl.label.position.y = 0.0
-	hl.post_marker.global_position = node.global_position
-	AutoTween.new(hl.label_container, &"position:y", -24.0).from(0.0)
-	AutoTween.new(hl.label, &"position:y", -42.0, 0.75, Tween.TRANS_QUART, Tween.EASE_IN).set_delay(1.0).finished.connect(hl.queue_free)
-	return hl
+	var instance := _check_instance(node)
+	if instance == null:
+		instance = load("uid://bp6k0giylx3f3").instantiate()
+		Arena.other_nodes.add_child(instance.post_marker)
+		Game.ui_node.add_child(instance)
+		instance.parent = node
+		instance.global_position = Game.get_relative_position(node) + pos_offset
+	instance.offset = pos_offset
+	instance.parent.set_meta(META, instance)
+	instance.damage = damage_ammount
+	instance.accumulated_damage += damage_ammount
+	instance.label.position.y = 0.0
+	instance.post_marker.global_position = node.global_position
+	AutoTween.new(instance.label_container, &"position:y", -24.0).from(0.0)
+	AutoTween.new(instance.label, &"position:y", -42.0, 0.75, Tween.TRANS_QUART, Tween.EASE_IN).set_delay(1.0).finished.connect(instance.queue_free)
+	return instance
 
-static func check_hitlabel(node: Node2D) -> HitLabel:
+static func _check_instance(node: Node2D) -> HitLabel:
 	if node.has_meta(META):
-		var hl = node.get_meta(META)
-		return hl if hl != null else null
+		var instance = node.get_meta(META)
+		return instance if instance != null else null
 	return null
 
 @onready var label_container := %LabelContainer
