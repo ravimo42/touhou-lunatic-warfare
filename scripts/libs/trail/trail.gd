@@ -9,14 +9,14 @@ var _last_pos := Vector2.ZERO
 
 ## Remove trail which is following the 'node'
 static func remove(node: Node, dur := 0.5) -> void:
-	var trail: Trail
+	var instance: Trail
 	if !is_instance_valid(node):
 		return
 	if node.has_meta(META) and is_instance_valid(node.get_meta(META)):
-		trail = node.get_meta(META)
-	if trail == null:
+		instance = node.get_meta(META)
+	if instance == null:
 		return
-	trail.destroy(dur)
+	instance.destroy(dur)
 
 ## Remove trail with animation
 func destroy(dur := 0.5) -> void:

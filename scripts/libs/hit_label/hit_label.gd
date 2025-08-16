@@ -35,6 +35,9 @@ var accumulated_damage: float
 var parent: Entity
 var post_marker := Node2D.new()
 
+func _ready() -> void:
+	tree_exited.connect(post_marker.queue_free)
+
 func _physics_process(_delta: float) -> void:
 	global_position = Game.get_relative_position(parent if parent != null else post_marker) + offset
 	label.text = str(roundi(accumulated_damage))

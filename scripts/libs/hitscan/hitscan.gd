@@ -20,7 +20,7 @@ func spawn() -> void:
 	get_tree().create_timer(disable_collision_after).timeout.connect(func():
 		active = false
 	)
-	
+
 func _physics_process(_delta: float) -> void:
 	if !active:
 		return
@@ -42,6 +42,11 @@ func _raycast_check() -> void:
 		return
 	_set_length(_raycast.get_collision_point().distance_to(global_position))
 	_normal = _raycast.get_collision_normal()
+	
+	if _raycast.get_collider() is HitboxComponent:
+		VFX.Explosion.CircularExplosion.new(_raycast.get_collision_point(), 12.0, 0.2)
+	else:
+		VFX.PostCollision.BulletSpark.new(_raycast.get_collision_point(), _normal, global_rotation)
 
 func _set_length(val: float) -> void:
 	_line.points[0].x = val+ LENGTH_OFFSET

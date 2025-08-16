@@ -32,7 +32,7 @@ func damage(source: Node2D, ammount: float, args: Dictionary) -> void:
 func die() -> void:
 	died.emit()
 	hitbox_component.active = false
-	VFX.Explosion.new(self)
+	VFX.Explosion.RegularExplosion.new(global_position)
 	queue_free()
 
 ## Common despawn behaviour
