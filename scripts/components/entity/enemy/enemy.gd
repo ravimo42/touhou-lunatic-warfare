@@ -9,7 +9,7 @@ func _ready() -> void:
 	_jump()
 	damaged.connect(func(args):
 		HealthBar.create(health_component.percent, self)
-		HitLabel.create(args.ammount, self)
+		HitLabel.create(args.change_package.amount, self)
 		VFX.Explosion.CircularExplosion.new(args.collision_point, 12.0, 0.2)
 		VFX.Particles.BloodSplat.new(args.collision_point)
 	)

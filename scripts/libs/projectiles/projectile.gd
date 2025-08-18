@@ -94,6 +94,7 @@ func collision_check(deactivate_on_collision := true, args := {}) -> Array:
 		if !can_pass_through and deactivate_on_collision:
 			explode()
 			_deactivate()
+		args.merge({&"change_package": health_change})
 		collider.set_meta(UID_META, unique_id)
-		collider.hit.emit(health_change, args)
+		collider.hit.emit(args)
 	return results
