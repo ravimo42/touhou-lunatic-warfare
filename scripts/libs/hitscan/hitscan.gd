@@ -24,8 +24,10 @@ func spawn() -> void:
 func _physics_process(_delta: float) -> void:
 	if !active:
 		return
-	collision_check.call_deferred(false, {"normal": _normal})
 	query.transform = transform
+	(func():
+		collision_check(false, {&"normal": _normal, &"collision_point": _raycast.get_collision_point()})
+	).call_deferred()
 
 func _trail_anim() -> void:
 	var dur: float = (_line.points[0].x / MAX_LENGTH) * decay_speed
@@ -43,11 +45,9 @@ func _raycast_check() -> void:
 	_set_length(_raycast.get_collision_point().distance_to(global_position))
 	_normal = _raycast.get_collision_normal()
 	
-	if _raycast.get_collider() is HitboxComponent:
-		VFX.Explosion.CircularExplosion.new(_raycast.get_collision_point(), 12.0, 0.2)
-	else:
-		VFX.PostCollision.BulletSpark.new(_raycast.get_collision_point(), _normal, global_rotation)
-
+	if _raycast.get_collider() is not HitboxComponent:
+		VFX.Particles.BulletSpark.new(_raycast.get_collision_point(), _normal, global_rotation)
+	
 func _set_length(val: float) -> void:
 	_line.points[0].x = val+ LENGTH_OFFSET
 	_collision_shape.b.x = val + LENGTH_OFFSET

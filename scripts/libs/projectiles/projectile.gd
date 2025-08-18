@@ -38,7 +38,7 @@ func explode() -> void:  # Can be overwritten
 func _physics_process(delta: float) -> void:
 	if !active: return
 	behaviour(delta)
-	collision_check()
+	collision_check(true, {&"collision_point": global_position})
 	query.transform = transform
 
 func _ready() -> void:
@@ -95,5 +95,5 @@ func collision_check(deactivate_on_collision := true, args := {}) -> Array:
 			explode()
 			_deactivate()
 		collider.set_meta(UID_META, unique_id)
-		collider.hit.emit(self, health_change, args)
+		collider.hit.emit(health_change, args)
 	return results

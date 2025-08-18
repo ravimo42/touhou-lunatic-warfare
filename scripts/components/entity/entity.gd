@@ -7,7 +7,7 @@ class StaticSignal:
 static var static_signals := StaticSignal.new()
 
 signal died
-signal damaged(ammount: float)
+signal damaged(args: Dictionary)
 signal spawned
 signal despawned
 
@@ -18,15 +18,14 @@ var health_component: HealthComponent:
 var knockback_factor := 100.0
 
 ## Common damage behaviour
-func damage(source: Node2D, ammount: float, args: Dictionary) -> void:
-	damaged.emit(ammount)
+func damage(args: Dictionary) -> void:
+	damaged.emit(args)
 	static_signals.someone_got_hit.emit()
 	AutoTween.new(self, &"modulate", Color.WHITE, 0.25).from(Color.RED)
 	AutoTween.new(self, &"scale", Vector2.ONE, 0.25).from(Vector2(1.05, 1.05))
+	velocity.x = sign((global_position - args.collision_point).normalized().x) * knockback_factor
 	if is_on_floor():
 		velocity.y = - knockback_factor
-	if args.has("normal"): velocity.x = - sign(args["normal"].x) * knockback_factor
-	else: velocity.x = sign((global_position - source.global_position).normalized().x) * knockback_factor
 
 ## Common die behaviour
 func die() -> void:

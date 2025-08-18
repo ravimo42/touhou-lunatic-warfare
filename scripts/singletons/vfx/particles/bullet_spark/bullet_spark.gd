@@ -1,4 +1,4 @@
-extends GPUParticles2D
+extends ParticlesGPU
 
 const MAX_VELOCITY := 500.0
 
@@ -19,7 +19,4 @@ func _ready() -> void:
 	
 	velocity = MAX_VELOCITY * res_v_normalized
 	rotate(res)
-	get_tree().create_timer(lifetime).timeout.connect(queue_free)
-	(func():
-		emitting = true
-	).call_deferred()
+	super()

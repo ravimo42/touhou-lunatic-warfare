@@ -7,9 +7,11 @@ var dir_to_player: float:
 
 func _ready() -> void:
 	_jump()
-	damaged.connect(func(ammount):
+	damaged.connect(func(args):
 		HealthBar.create(health_component.percent, self)
-		HitLabel.create(ammount, self)
+		HitLabel.create(args.ammount, self)
+		VFX.Explosion.CircularExplosion.new(args.collision_point, 12.0, 0.2)
+		VFX.Particles.BloodSplat.new(args.collision_point)
 	)
 
 func _physics_process(delta: float) -> void:
