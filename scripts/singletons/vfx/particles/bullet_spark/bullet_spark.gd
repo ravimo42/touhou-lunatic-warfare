@@ -10,7 +10,11 @@ var velocity: float:
 		mat.initial_velocity_max = val
 		mat.initial_velocity_min = val/2.0
 
-func _ready() -> void:
+func _pool_claim() -> void:
+	super()
+	_transform.call_deferred()
+
+func _transform() -> void:
 	var res := Math.reflection(Vector2.from_angle(incident_angle), normal).angle()
 	var i_v := Vector2.from_angle(incident_angle)
 	var r_v := Vector2.from_angle(res)
@@ -18,5 +22,4 @@ func _ready() -> void:
 	var res_v_normalized = remap(res_v, 0.0, PI, 0.0, 1.0)
 	
 	velocity = MAX_VELOCITY * res_v_normalized
-	rotate(res)
-	super()
+	global_rotation = res

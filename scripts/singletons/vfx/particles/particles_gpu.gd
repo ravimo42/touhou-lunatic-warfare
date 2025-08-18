@@ -1,7 +1,18 @@
 @abstract class_name ParticlesGPU extends GPUParticles2D
 
 func _ready() -> void:
-	get_tree().create_timer(lifetime).timeout.connect(queue_free)
+	hide()
+	emitting = false
+	one_shot = true
+
+func _pool_claim() -> void:
+	get_tree().create_timer(lifetime).timeout.connect(
+		ObjectPoolService.unclaim.bind(self)
+	)
 	(func():
-		emitting = true
+		restart()
+		show()
 	).call_deferred()
+
+func _pool_unclaim() -> void:
+	hide()
